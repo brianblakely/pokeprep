@@ -1,12 +1,14 @@
-import React, { createContext } from 'react';
-import { pure } from 'recompose';
+import React from 'react';
 
-const { Provider, Consumer } = createContext();
+import { Provider } from './Context.js';
+import { TableView } from './TableView.js';
 
-const Table = (props)=> (
-  <Provider>
-
-  </Provider>
-);
-
-export default pure(Table);
+export default class Table extends React.Component {
+  render() {
+    return (
+      <Provider value={this.state}>
+        <TableView />
+      </Provider>
+    );
+  }
+}
