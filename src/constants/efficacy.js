@@ -1,0 +1,5 @@
+export const
+      EFFICACY_STRONG = Symbol(`EFFICACY_STRONG`),
+      EFFICACY_NORMAL = Symbol(`EFFICACY_NORMAL`),
+      EFFICACY_WEAK = Symbol(`EFFICACY_WEAK`),
+      EFFICACY_NONE = Symbol(`EFFICACY_NONE`);
