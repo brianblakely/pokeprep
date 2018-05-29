@@ -15,9 +15,6 @@ import typeNames from '../../data/type-names';
 import efficacyLabels from '../../data/efficacy-labels';
 import * as efficacy from '../../constants/efficacy';
 
-const efficacyMatchEntries = Array.from(Array.from(efficacyMatches).entries()),
-      typeNameEntries = Array.from(Array.from(typeNames).entries());
-
 const effectiveAgainst = new Set(),
       picked = new Set();
 
@@ -33,8 +30,8 @@ const setEffectiveAgainst = (pickedType, state)=> {
   for(const pick of picked) {
     const matches = efficacyMatches.get(pick);
 
-    for(const type of Reflect.ownKeys(matches)) {
-      if(matches[type] === efficacy.EFFICACY_STRONG) {
+    for(const [type, efficacyLevel] of matches) {
+      if(efficacyLevel === efficacy.EFFICACY_STRONG) {
         effectiveAgainst.add(type);
       }
     }
@@ -52,7 +49,7 @@ const TableView = (props)=> (
       <TableHead>
         <TableRow>
           <TableCell></TableCell>
-          {typeNameEntries.map(([index, [symbol, name]])=> (
+          {Array.from(typeNames).map(([symbol, name], index)=> (
             <TableCell key={index} component="th" scope="col">
               {
                 effectiveAgainst.has(symbol)
@@ -65,7 +62,7 @@ const TableView = (props)=> (
         </TableRow>
       </TableHead>
       <TableBody>
-        {efficacyMatchEntries.map(([index, [symbol, matches]])=> (
+        {Array.from(efficacyMatches).map(([symbol, matches], index)=> (
           <TableRow key={index}>
             <TableCell component="th" scope="row">
               <Button onClick={()=> setEffectiveAgainst(symbol, props.state)}>
@@ -76,7 +73,7 @@ const TableView = (props)=> (
             {typeNameEntries.map(([cellIndex, [typeSymbol]])=> (
               <TableCell key={cellIndex}>
                 {
-                  typeSymbol in matches
+                  matches.has(typeSymbol)
                     ? efficacyLabels.get(matches[typeSymbol]).glyph
                     : ``
                 }
