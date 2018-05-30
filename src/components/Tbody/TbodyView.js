@@ -44,7 +44,9 @@ const TbodyView = (props)=> (
         <TableCell component="th" scope="row">
           <Button onClick={()=> setEffectiveAgainst(symbol, props.state)}>
             {typeNames.get(symbol)}
-            {picked.has(symbol) && ` ✸`}
+            <span style={{ visibility: picked.has(symbol) ? `visible` : `hidden` }}>
+              &nbsp;✸
+            </span>
           </Button>
         </TableCell>
         {Array.from(typeNames).map(([typeSymbol], cellIndex)=> (
