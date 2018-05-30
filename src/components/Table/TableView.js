@@ -70,11 +70,11 @@ const TableView = (props)=> (
                 {picked.has(symbol) && ` ✸`}
               </Button>
             </TableCell>
-            {typeNameEntries.map(([cellIndex, [typeSymbol]])=> (
+            {Array.from(typeNames).map(([typeSymbol], cellIndex)=> (
               <TableCell key={cellIndex}>
                 {
                   matches.has(typeSymbol)
-                    ? efficacyLabels.get(matches[typeSymbol]).glyph
+                    ? efficacyLabels.get(matches.get(typeSymbol)).glyph
                     : ``
                 }
               </TableCell>
