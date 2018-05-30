@@ -45,7 +45,7 @@ const TbodyView = (props)=> (
           <Button onClick={()=> setEffectiveAgainst(symbol, props.state)}>
             {typeNames.get(symbol)}
             <span style={{ visibility: picked.has(symbol) ? `visible` : `hidden` }}>
-              &nbsp;✸
+              &nbsp;✔︎
             </span>
           </Button>
         </TableCell>

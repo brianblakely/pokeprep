@@ -3,7 +3,7 @@ import * as efficacy from '../constants/efficacy.js';
 const efficacyLabels = new Map([
   [efficacy.EFFICACY_STRONG, {
     phrase: `It's Super Effective!`,
-    glyph: `▲`
+    glyph: `✸`
   }],
   [efficacy.EFFICACY_NORMAL, {
     phrase: `Neutral`,
