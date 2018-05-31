@@ -43,49 +43,17 @@ const setEffectiveAgainst = (pickedType, state)=> {
 const firstIndex = 0,
       abbr = 3;
 
-const TableView = (props)=> (
-  <Paper>
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell></TableCell>
-          {Array.from(typeNames).map(([symbol, name], index)=> (
-            <TableCell key={index} component="th" scope="col">
-              {
-                effectiveAgainst.has(symbol)
-                  && efficacyLabels.get(efficacy.EFFICACY_STRONG).glyph
-              }
-              <br />
-              {name.substr(firstIndex, abbr).toUpperCase()}
-            </TableCell>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {Array.from(efficacyMatches).map(([symbol, matches], index)=> (
-          <TableRow key={index}>
-            <TableCell component="th" scope="row">
-              <Button onClick={()=> setEffectiveAgainst(symbol, props.state)}>
-                {typeNames.get(symbol)}
-                {picked.has(symbol) && ` ✸`}
-              </Button>
-            </TableCell>
-            {Array.from(typeNames).map(([typeSymbol], cellIndex)=> (
-              <TableCell key={cellIndex}>
-                {
-                  matches.has(typeSymbol)
-                    ? efficacyLabels.get(matches.get(typeSymbol)).glyph
-                    : ``
-                }
-              </TableCell>
-            ))}
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </Paper>
+const TcolView = (props)=> (
+  <TableCell component="th" scope="col">
+    {
+      effectiveAgainst.has(symbol)
+        && efficacyLabels.get(efficacy.EFFICACY_STRONG).glyph
+    }
+    <br />
+    {name.substr(firstIndex, abbr).toUpperCase()}
+  </TableCell>
 );
 
-TableView.propTypes = { state: PropTypes.func };
+TcolView.propTypes = { state: PropTypes.func };
 
-export default pure(TableView);
+export default pure(TcolView);
