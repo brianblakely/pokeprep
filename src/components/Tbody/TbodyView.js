@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 
 import efficacyMatches from '../../data/efficacy-matches';
-import typeNames from '../../data/type-names';
+import typeLabels from '../../data/type-labels';
 import efficacyLabels from '../../data/efficacy-labels';
 import * as efficacy from '../../constants/efficacy';
 
@@ -42,14 +42,20 @@ const TbodyView = (props)=> (
     {Array.from(efficacyMatches).map(([symbol, matches], index)=> (
       <TableRow key={index}>
         <TableCell component="th" scope="row">
-          <Button onClick={()=> setEffectiveAgainst(symbol, props.state)}>
-            {typeNames.get(symbol)}
+          <Button
+            onClick={()=> setEffectiveAgainst(symbol, props.state)}
+            style={{
+              color: `#fff`,
+              backgroundColor: typeLabels.get(symbol).color
+            }}
+          >
+            {typeLabels.get(symbol).name}
             <span style={{ visibility: picked.has(symbol) ? `visible` : `hidden` }}>
               &nbsp;✔︎
             </span>
           </Button>
         </TableCell>
-        {Array.from(typeNames).map(([typeSymbol], cellIndex)=> (
+        {Array.from(typeLabels).map(([typeSymbol], cellIndex)=> (
           <TableCell
             key={cellIndex}
             style={{

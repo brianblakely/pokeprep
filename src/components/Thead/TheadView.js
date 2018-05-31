@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-import typeNames from '../../data/type-names';
+import typeLabels from '../../data/type-labels';
 import efficacyLabels from '../../data/efficacy-labels';
 import * as efficacy from '../../constants/efficacy';
 
@@ -19,14 +19,14 @@ const TheadView = ()=> (
   <TableHead>
     <TableRow>
       <TableCell></TableCell>
-      {Array.from(typeNames).map(([symbol, name], index)=> (
+      {Array.from(typeLabels).map(([symbol, typeLabelData], index)=> (
         <TableCell key={index} component="th" scope="col">
           {
             effectiveAgainst.has(symbol)
-                  && efficacyLabels.get(efficacy.EFFICACY_STRONG).glyph
+              && efficacyLabels.get(efficacy.EFFICACY_STRONG).glyph
           }
           <br />
-          {name.substr(firstIndex, abbr).toUpperCase()}
+          {typeLabelData.name.substr(firstIndex, abbr).toUpperCase()}
         </TableCell>
       ))}
     </TableRow>
