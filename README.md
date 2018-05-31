@@ -27,3 +27,7 @@ These are the most prevalent colors used for each type:
 * Dark Type: `705746` ![#705746](https://placehold.it/15/705746/000000?text=+)
 * Steel Type: `B7B7CE` ![#B7B7CE](https://placehold.it/15/B7B7CE/000000?text=+)
 * Fairy Type: `D685AD` ![#D685AD](https://placehold.it/15/D685AD/000000?text=+)
+
+[Material Color Translator](http://hyunbinpark.com/MaterialColors/)
+
+[Material-UI Color Documentation](https://material-ui.com/style/color/)
