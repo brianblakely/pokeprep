@@ -20,7 +20,15 @@ const TheadView = ()=> (
     <TableRow>
       <TableCell></TableCell>
       {Array.from(typeLabels).map(([symbol, typeLabelData], index)=> (
-        <TableCell key={index} component="th" scope="col">
+        <TableCell
+          key={index}
+          component="th"
+          scope="col"
+          style={{
+            color: `#fff`,
+            backgroundColor: typeLabelData.color
+          }}
+        >
           {
             effectiveAgainst.has(symbol)
               && efficacyLabels.get(efficacy.EFFICACY_STRONG).glyph
