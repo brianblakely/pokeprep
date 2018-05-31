@@ -50,7 +50,14 @@ const TbodyView = (props)=> (
           </Button>
         </TableCell>
         {Array.from(typeNames).map(([typeSymbol], cellIndex)=> (
-          <TableCell key={cellIndex}>
+          <TableCell
+            key={cellIndex}
+            style={{
+              color: matches.has(typeSymbol)
+                && efficacyLabels.get(matches.get(typeSymbol)).color
+                || ``
+            }}
+          >
             {
               matches.has(typeSymbol)
                 ? efficacyLabels.get(matches.get(typeSymbol)).glyph
