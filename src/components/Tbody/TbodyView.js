@@ -54,8 +54,8 @@ const TbodyView = (props)=> (
             key={cellIndex}
             style={{
               color: matches.has(typeSymbol)
-                && efficacyLabels.get(matches.get(typeSymbol)).color
-                || ``
+                ? efficacyLabels.get(matches.get(typeSymbol)).color
+                : ``
             }}
           >
             {
