@@ -7,6 +7,12 @@ body {
   text-align: center !important;
   font-size: 10px !important;
 }
+thead th {
+  padding: 0 2px !important;
+}
+tbody td {
+  font-size: 18px !important;
+}
 tr {
   height: auto !important;
 }
@@ -16,9 +22,6 @@ th:first-child {
 }
 th, td {
   padding: 0 !important;
-}
-thead th {
-  padding: 0 2px !important;
 }
 button {
   white-space: nowrap !important;
