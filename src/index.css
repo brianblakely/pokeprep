@@ -24,5 +24,10 @@ th, td {
   padding: 0 !important;
 }
 button {
+  max-width: 88px;
   white-space: nowrap !important;
+}
+button > span > span {
+  position: absolute;
+  right: 6px;
 }
