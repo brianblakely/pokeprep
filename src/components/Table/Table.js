@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { Provider } from '../Context';
+import Store from '../Store';
 import TableView from './TableView';
 
 export default class Table extends React.Component {
   render() {
     return (
-      <Provider value={this.state}>
+      <Store>
         <TableView state={this.setState.bind(this)} />
-      </Provider>
+      </Store>
     );
   }
 }
