@@ -12,6 +12,7 @@ export default class Store extends React.Component {
 
     this.state = {
       effectiveAgainst: new Set(),
+      weakAgainst: new Set(),
       picked: new Set()
     };
   }
@@ -23,7 +24,7 @@ export default class Store extends React.Component {
 
         actions: {
 
-          setEffectiveAgainst: (pickedType)=> {
+          setEfficacy: (pickedType)=> {
             const { picked } = this.state;
 
             const _picked = new Set([...picked]);
@@ -34,7 +35,8 @@ export default class Store extends React.Component {
               _picked.add(pickedType);
             }
 
-            const effectiveAgainst = new Set();
+            const effectiveAgainst = new Set(),
+                  weakAgainst = new Set();
 
             for(const pick of _picked) {
               const matches = efficacyMatches.get(pick);
@@ -42,12 +44,15 @@ export default class Store extends React.Component {
               for(const [type, efficacyLevel] of matches) {
                 if(efficacyLevel === efficacy.EFFICACY_STRONG) {
                   effectiveAgainst.add(type);
+                } else if(efficacyLevel === efficacy.EFFICACY_WEAK) {
+                  weakAgainst.add(type);
                 }
               }
             }
 
             this.setState({
               effectiveAgainst,
+              weakAgainst,
               picked: _picked
             });
           }

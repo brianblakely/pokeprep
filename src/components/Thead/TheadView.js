@@ -34,6 +34,10 @@ const TheadView = ()=> (
                 state.effectiveAgainst.has(symbol)
                   && efficacyLabels.get(efficacy.EFFICACY_STRONG).glyph
               }
+              {
+                state.weakAgainst.has(symbol)
+                  && efficacyLabels.get(efficacy.EFFICACY_WEAK).glyph
+              }
               <br />
               {typeLabelData.name.substr(firstIndex, abbr).toUpperCase()}
             </TableCell>

@@ -20,7 +20,7 @@ const TbodyView = ()=> (
           <TableRow key={index}>
             <TableCell component="th" scope="row">
               <Button
-                onClick={()=> actions.setEffectiveAgainst(symbol)}
+                onClick={()=> actions.setEfficacy(symbol)}
                 style={{
                   color: `#fff`,
                   backgroundColor: typeLabels.get(symbol).color
