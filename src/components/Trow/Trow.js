@@ -29,7 +29,7 @@ export default class Trow extends React.Component {
           >
             {this.props.name}
             <span style={{ visibility: this.props.picked ? `visible` : `hidden` }}>
-            ✔︎
+              {`✔`}
             </span>
           </Button>
         </TableCell>
