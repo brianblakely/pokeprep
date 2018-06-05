@@ -1,14 +1,19 @@
 import React from 'react';
+import { pure } from 'recompose';
 
-import Store from '../Store';
-import TableView from './TableView';
+import Table from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
 
-export default class Table extends React.Component {
-  render() {
-    return (
-      <Store>
-        <TableView />
-      </Store>
-    );
-  }
-}
+import Thead from '../Thead/Thead';
+import Tbody from '../Tbody/Tbody';
+
+const TableView = ()=> (
+  <Paper>
+    <Table>
+      <Thead />
+      <Tbody />
+    </Table>
+  </Paper>
+);
+
+export default pure(TableView);
