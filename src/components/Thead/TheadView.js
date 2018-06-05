@@ -7,12 +7,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 import typeLabels from '../../data/type-labels';
-import efficacyLabels from '../../data/efficacy-labels';
-import * as efficacy from '../../constants/efficacy';
 import { Consumer } from '../Store';
-
-const firstIndex = 0,
-      abbr = 3;
+import Tcol from '../Tcol/Tcol';
 
 const TheadView = ()=> (
   <Consumer>
@@ -21,26 +17,13 @@ const TheadView = ()=> (
         <TableRow>
           <TableCell></TableCell>
           {Array.from(typeLabels).map(([symbol, typeLabelData], index)=> (
-            <TableCell
+            <Tcol
               key={index}
-              component="th"
-              scope="col"
-              style={{
-                color: `#fff`,
-                backgroundColor: typeLabelData.color
-              }}
-            >
-              {
-                state.effectiveAgainst.has(symbol)
-                  && efficacyLabels.get(efficacy.EFFICACY_STRONG).glyph
-              }
-              {
-                state.weakAgainst.has(symbol)
-                  && efficacyLabels.get(efficacy.EFFICACY_WEAK).glyph
-              }
-              <br />
-              {typeLabelData.name.substr(firstIndex, abbr).toUpperCase()}
-            </TableCell>
+              strong={state.effectiveAgainst.has(symbol)}
+              weak={state.weakAgainst.has(symbol)}
+              bg={typeLabelData.color}
+              name={typeLabelData.name}
+            />
           ))}
         </TableRow>
       </TableHead>

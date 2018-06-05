@@ -1,14 +1,42 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { pure } from 'recompose';
 
-import { Provider } from '../Context';
-import TableView from './TableView';
+import TableCell from '@material-ui/core/TableCell';
 
-export default class Table extends React.Component {
-  render() {
-    return (
-      <Provider value={this.state}>
-        <TableView state={this.setState.bind(this)} />
-      </Provider>
-    );
-  }
-}
+import efficacyLabels from '../../data/efficacy-labels';
+import * as efficacy from '../../constants/efficacy';
+
+const firstIndex = 0,
+      abbr = 3;
+
+const Tcol = (props)=> (
+  <TableCell
+    component="th"
+    scope="col"
+    style={{
+      color: `#fff`,
+      backgroundColor: props.bg
+    }}
+  >
+    {
+      props.strong
+        && efficacyLabels.get(efficacy.EFFICACY_STRONG).glyph
+    }
+    {
+      props.weak
+        && efficacyLabels.get(efficacy.EFFICACY_WEAK).glyph
+    }
+    <br />
+    {props.name.substr(firstIndex, abbr).toUpperCase()}
+  </TableCell>
+);
+
+Tcol.propTypes = {
+  strong: PropTypes.bool,
+  weak: PropTypes.bool,
+  bg: PropTypes.string,
+  name: PropTypes.string
+};
+
+export default pure(Tcol);
