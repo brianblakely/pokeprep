@@ -1,14 +1,33 @@
 import React from 'react';
+import { pure } from 'recompose';
 
-import { Provider } from '../Context';
-import TableView from './TableView';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
-export default class Table extends React.Component {
-  render() {
-    return (
-      <Provider value={this.state}>
-        <TableView state={this.setState.bind(this)} />
-      </Provider>
-    );
-  }
-}
+import typeLabels from '../../data/type-labels';
+import { Consumer } from '../Store';
+import Tcol from '../Tcol/Tcol';
+import Tcell from '../Tcell/Tcell';
+
+const Thead = ()=> (
+  <Consumer>
+    {({ state })=> (
+      <TableHead>
+        <TableRow>
+          <Tcell></Tcell>
+          {Array.from(typeLabels).map(([symbol, typeLabelData], index)=> (
+            <Tcol
+              key={index}
+              strong={state.effectiveAgainst.has(symbol)}
+              weak={state.weakAgainst.has(symbol)}
+              bg={typeLabelData.color}
+              name={typeLabelData.name}
+            />
+          ))}
+        </TableRow>
+      </TableHead>
+    )}
+  </Consumer>
+);
+
+export default pure(Thead);

@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { pure } from 'recompose';
 
-import { Provider } from '../Context';
-import TableView from './TableView';
+import TableCell from '@material-ui/core/TableCell';
 
-export default class Table extends React.Component {
-  render() {
-    return (
-      <Provider value={this.state}>
-        <TableView state={this.setState.bind(this)} />
-      </Provider>
-    );
-  }
-}
+const Tcell = (props)=> (
+  <TableCell
+    style={{ color: props.color }}
+  >
+    {props.glyph}
+  </TableCell>
+);
+
+Tcell.propTypes = {
+  color: PropTypes.string,
+  glyph: PropTypes.string
+};
+
+export default pure(Tcell);

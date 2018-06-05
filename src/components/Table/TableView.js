@@ -5,8 +5,8 @@ import { pure } from 'recompose';
 import Table from '@material-ui/core/Table';
 import Paper from '@material-ui/core/Paper';
 
-import Thead from '../Thead/TheadView';
-import Tbody from '../Tbody/TbodyView';
+import Thead from '../Thead/Thead';
+import Tbody from '../Tbody/Tbody';
 
 const TableView = (props)=> (
   <Paper>
