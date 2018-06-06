@@ -82,7 +82,7 @@
 
     "array-bracket-newline": "off",
     "array-element-newline": "off",
-    "capitalized-comments": "warn",
+    "capitalized-comments": "off",
     "func-names": "off",
     "function-paren-newline": "off",
     "id-length": "off",
