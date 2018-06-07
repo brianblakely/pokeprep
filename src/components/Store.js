@@ -15,50 +15,48 @@ export default class Store extends React.Component {
       weakAgainst: new Set(),
       picked: new Set()
     };
+
+    this.actions = {
+      setEfficacy: (pickedType)=> {
+        const { picked } = this.state;
+
+        const _picked = new Set([...picked]);
+
+        if(picked.has(pickedType)) {
+          _picked.delete(pickedType);
+        } else {
+          _picked.add(pickedType);
+        }
+
+        const effectiveAgainst = new Set(),
+              weakAgainst = new Set();
+
+        for(const pick of _picked) {
+          const matches = efficacyMatches.get(pick);
+
+          for(const [type, efficacyLevel] of matches) {
+            if(efficacyLevel === efficacy.EFFICACY_STRONG) {
+              effectiveAgainst.add(type);
+            } else if(efficacyLevel === efficacy.EFFICACY_WEAK) {
+              weakAgainst.add(type);
+            }
+          }
+        }
+
+        this.setState({
+          effectiveAgainst,
+          weakAgainst,
+          picked: _picked
+        });
+      }
+    };
   }
 
   render() {
     return (
       <Provider value={{
         state: this.state,
-
-        actions: {
-
-          setEfficacy: (pickedType)=> {
-            const { picked } = this.state;
-
-            const _picked = new Set([...picked]);
-
-            if(picked.has(pickedType)) {
-              _picked.delete(pickedType);
-            } else {
-              _picked.add(pickedType);
-            }
-
-            const effectiveAgainst = new Set(),
-                  weakAgainst = new Set();
-
-            for(const pick of _picked) {
-              const matches = efficacyMatches.get(pick);
-
-              for(const [type, efficacyLevel] of matches) {
-                if(efficacyLevel === efficacy.EFFICACY_STRONG) {
-                  effectiveAgainst.add(type);
-                } else if(efficacyLevel === efficacy.EFFICACY_WEAK) {
-                  weakAgainst.add(type);
-                }
-              }
-            }
-
-            this.setState({
-              effectiveAgainst,
-              weakAgainst,
-              picked: _picked
-            });
-          }
-
-        }
-
+        actions: this.actions
       }}>
         {this.props.children}
       </Provider>
